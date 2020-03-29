@@ -1,16 +1,20 @@
-plugins {
-    id 'java'
+buildscript {
+    repositories {
+        maven { url "http://platform-acceleration-lab-maven.s3.amazonaws.com" }
+        jcenter()
+    }
+
+    dependencies {
+        classpath "io.pivotal.pal.assignments:assignments-plugin:4.3.1"
+    }
 }
 
-group 'org.example'
-version '1.0-SNAPSHOT'
+apply plugin: "io.pivotal.pal.assignments.plugin"
 
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
+assignments {
+    apiUrl = "https://cognizant-waveland.education.pivotal.io/"
+    emails = ["vincent.p@cognizant.com"]
+    cohortIdentifier = "vincentaccount"
 }
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-}
+defaultTasks "tasks"
